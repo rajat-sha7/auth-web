@@ -1,13 +1,11 @@
 import User from "../modals/user.modals.js";
 import bcryptjs from "bcryptjs";
-import { errorHandler } from "../utils/error.js";
+// import { errorHandler } from "../utils/error.js";
 
 
-export const signup  = async (req,res, next) => {
+export const signup  = async (req, res, next) => {
  const {username, email, password} = req.body;
-
  const hashedPassword = bcryptjs.hashSync(password, 18);
-
  const newUser = new User({username, email , password:hashedPassword});
 try{
     await newUser.save();
@@ -15,5 +13,5 @@ try{
 
 } catch (error){
     next(error);
-};
+}
 };
