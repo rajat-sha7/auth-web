@@ -11,6 +11,7 @@ export default function OAuth() {
       const auth = getAuth(app);
 
       const result = await signInWithPopup(auth, provider);
+      console.log(result)
 
       const res = await fetch('api/auth/google',{
         method: 'POST',
@@ -27,10 +28,10 @@ export default function OAuth() {
       const data = await res.json();
       dispatch(signInSucces(data));
 
-      console.log(data )
+      console.log(data , "googledata" )
      
     } catch (error) {
-      console.log("could not login with goole ", error);
+      console.log("could not login with google ", error);
     }
   };
 

@@ -6,9 +6,8 @@ import storage from "redux-persist/lib/storage";
 const rootReducer = combineReducers({ user: userReducer });
 
 const persistConfig = {
-  key: "user",
+  key: 'root',
   storage,
-  version: 1
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -17,8 +16,8 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      // serializableCheck: false // Enable this in production for better data integrity
-    })
+      serializableCheck: false
+    }),
 });
 
 export const persistor = persistStore(store);
